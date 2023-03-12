@@ -2,14 +2,15 @@ version: '3.9'
 
 services:
   db:
-    image: postgres:alpine
+    image: 'postgres:alpine'
+    container_name: pg-server
     restart: always
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: family_budget
     ports:
-      - "5440:5432"
+      - '2345:5432'
     volumes:
       - ./data:/var/lib/postgresql/data
 
