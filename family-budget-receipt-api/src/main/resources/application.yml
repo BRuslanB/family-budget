@@ -1,0 +1,54 @@
+# general settings
+server:
+  port: 8002
+
+# spring settings
+spring:
+  mandatory:
+    file:
+      encoding: UTF-8
+  data:
+    mongodb:
+      host: mongodb-receipt-db
+      port: 27027
+      database: receiptDB
+
+# springdoc settings
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+  api-docs:
+    path: /api-docs
+    enabled: true
+
+# actuator settings
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      base-path: "/"
+      path-mapping:
+        health: "healthcheck"
+        info: "info"
+        metrics: "metrics"
+  endpoint:
+    health:
+      show-details: when_authorized
+
+# logging setting
+logging:
+  level:
+    root: ERROR
+    kz.bars.family.budget.receipt.api: DEBUG
+    org.springframework.boot.autoconfigure.logging: WARN
+  file:
+    name: logs/app.log
+    append: true
+  appenders:
+    - type: file
+      immediateFlush: true
+      layout:
+        type: pattern
+        pattern: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"

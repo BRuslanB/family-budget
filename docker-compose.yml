@@ -1,0 +1,110 @@
+version: '3.9'
+services:
+  family-budget-api:
+    image: data-api-image
+    container_name: data-api-container
+    build:
+      context: ./family-budget-api
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres-db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-db:5432/family_budget_data
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+    ports:
+      - "8001:8001"
+
+  postgres-db:
+    image: postgres:alpine
+    container_name: postgres-db-container
+    environment:
+      POSTGRES_DB: family_budget_data
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - '5442:5432'
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  family-budget-receipt-api:
+    image: receipt-api-image
+    container_name: receipt-api-container
+    build:
+      context: ./family-budget-receipt-api
+      dockerfile: Dockerfile
+    depends_on:
+      - mongodb-receipt-db
+    environment:
+      - SPRING_DATA_MONGODB_HOST= mongodb-receipt-db
+      - SPRING_DATA_MONGODB_PORT= 27017            
+    ports:
+      - "8002:8002"
+
+  mongodb-receipt-db:
+    image: mongo:6.0.5
+    container_name: mongodb-receipt-db-container
+    environment:
+      MONGO_INITDB_DATABASE: receiptDb
+    ports:
+      - "27027:27017"
+    volumes:
+      - mongo-receipt-data:/var/lib/mongodb
+
+  family-budget-user-api:
+    image: user-api-image
+    container_name: user-api-container
+    build:
+      context: ./family-budget-user-api
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres-user-db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-user-db:5432/family_budget_user
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+    ports:
+      - "8003:8003"
+
+  postgres-user-db:
+    image: postgres:alpine
+    container_name: postgres-user-db-container
+    environment:
+      POSTGRES_DB: family_budget_user
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - '5443:5432'
+    volumes:
+      - postgres-user-data:/var/lib/postgresql/data
+
+  family-budget-ui:
+    image: react-ui-image
+    container_name: react-ui-container
+    build:
+      context: ./family-budget-ui
+      dockerfile: Dockerfile
+    ports:
+      - "5173:80"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin-container
+    environment:
+      PGADMIN_DEFAULT_EMAIL: kz.bars.prod@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: root
+      PGADMIN_LISTEN_PORT: 8080
+    ports:
+      - "5050:8080"
+
+  mongodb-compass:
+    image: mongo:6.0.5
+    container_name: mongodb-compass-container
+    depends_on:
+      - mongodb-receipt-db
+    command: mongod --bind_ip_all
+
+volumes:
+  postgres-data:
+  postgres-user-data:
+  mongo-receipt-data:

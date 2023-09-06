@@ -1,0 +1,107 @@
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+.image {
+    width: 112%; 
+    object-fit: cover; /* Stretches without distortion */
+}
+
+.bg_color_style {
+    background-color: RGB(174, 138, 126);
+}
+
+.button_style_add {
+    color: green;
+    font-weight: bold;
+    border-style: none;
+    background-color: transparent;
+}
+
+.btn.button_style_add:hover,
+.btn.button_style_add:focus:not(:active) {
+    color: rgb(0, 180, 0);
+    border-style: none;
+    background-color: transparent;
+    box-shadow: none;
+    outline: none;
+}
+
+.button_style_add_red {
+    color: red;
+    font-weight: bold;
+    border-style: none;
+    background-color: transparent;
+}
+
+.btn.button_style_add_red:hover,
+.btn.button_style_add_red:focus:not(:active) {
+    color: rgb(180, 0, 0);
+    border-style: none;
+    background-color: transparent;
+    box-shadow: none;
+    outline: none;
+}
+
+.button_style {
+    color: LightGrey;
+    border-style: none;
+    background-color: RGB(174, 138, 126);
+}
+
+.btn.button_style:focus {
+    color: white;
+    background-color: RGB(174, 138, 126);
+    box-shadow: none;
+    outline: none;
+}
+  
+.btn.button_style:hover,
+.btn.button_style:focus:not(:active) {
+    color: white;
+    background-color: RGB(133, 95, 82);
+}
+
+.align-right {
+    text-align: right;
+}
+
+.dropdown-menu {
+    background-color: RGB(174, 138, 126);
+}
+  
+.dropdown-menu-style .dropdown-item {
+    color: LightGrey;
+}
+
+.dropdown-menu-style .dropdown-item:hover {
+    color: white;
+    background-color: RGB(133, 95, 82);
+}
+  
+.dropdown-menu-style .dropdown-item:active {
+    color: white;
+    background-color: RGB(133, 95, 82);
+}
+
+.preview-image {
+    width: 100%;
+    height: auto;
+    border: none;
+    margin-bottom: 20px;
+}
+
+.bold-text {
+    font-weight: bold;
+}
+
+.export-btn {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #007bff;
+}
