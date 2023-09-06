@@ -10,18 +10,27 @@ The Family Budget Tracker application allows users to:
 * Add and manage family members
 * Add and manage expense categories
 * Record and track expenses for each family member and category
+* Download and view scanned copies of checks
 * View and filter expense reports by date range, family member, and category
 * Set and monitor income limits for each category
 
 ## Technologies Used
-The Family Budget Tracker application is built using the following technologies:
+The Family Budget Tracker application was created using a microservice architecture, where the following services are used:
+* User registration and authentication
+* Storage and provision of directories and basic data
+* Storage and provision of scanned copies of checks
+* Client interface
+
+The application is built using the following technologies:
 
 * Java 17
-* Spring Boot
 * Spring Data JPA
 * Hibernate
 * PostgreSQL
+* MongoDB
 * HTML5/CSS3
+* React JS
+* Nginx
 
 # Prerequisites
 Before running the application, you will need to have the following software installed on your machine:
