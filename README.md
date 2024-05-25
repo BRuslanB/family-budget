@@ -49,8 +49,12 @@ git clone https://github.com/BRuslanB/family-budget.git
 ```bash
 docker-compose up
 ```
+3. Open in a browser.
+``` 
+http://localhost:5173
+``` 
 
-## Contributing
+## Contribution
 If you would like to contribute to developing this application, please submit a pull request or open an issue on the GitHub repository.
 
 ## License
